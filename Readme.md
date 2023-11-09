@@ -66,12 +66,12 @@ Configurations include infrastructure connections, databases, queues, IAM, and I
 
 ## Infrastructure (Docker-Compose)
 
-A Docker-Compose file is provided for setting up the development environment, including Postgres, RabbitMQ, IAM, and IDP services.\
+A Docker-Compose file is provided for setting up the development environment, including Postgres, RabbitMQ, IAM, and IDP services. \
 
 [👉 Click here to see the docker compose-file.](./docker/docker-compose-file.yml)
 
 ## Unique loyalty system
 
-I've designed the loyalty system for maximum flexibility. You can easily tweak the points calculator and loyalty levels in both the application code and the properties file. This way, adapting to changing business needs is a breeze, giving us the agility to adjust without extensive code changes.\
+I've designed the loyalty system for maximum flexibility. You can easily tweak the points calculator and loyalty levels in both the application code and the properties file. This way, adapting to changing business needs is a breeze, giving us the agility to adjust without extensive code changes. \
 
 [👉 Click here to see the client properties-file.](./client/src/main/resources/application.properties)
