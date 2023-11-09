@@ -42,15 +42,15 @@ Web application for bakery staff to create and manage products, recipes, and bak
 ## User Stories
 
 A detailed list of user stories is provided in a CSV file. These stories cover various aspects of user interactions and system functionalities.\
-[👉 Click here to see client user stores.](./user-stories/Product_Backlog-Clients.csv)
-[👉 Click here to see warehouse user stores.](./user-stories/Product_Backlog-Warehouse.csv)
+[👉 Click here to see client user stores.](./user-stories/Product_Backlog-Clients.csv)\
+[👉 Click here to see warehouse user stores.](./user-stories/Product_Backlog-Warehouse.csv)\
 [👉 Click here to see bakery user stores.](./user-stories/Product_Backlog-Bakery.csv)
 
 ## Testing
 
-Automated tests, including unit tests for price calculations and loyalty levels, are implemented. Targeting a code line coverage of at least 60% for the Clients application.
-[👉 Click here to see client tests - extensive.](./client/src/test)
-[👉 Click here to see warehouse tests.](./warehouse/src/test)
+Automated tests, including unit tests for price calculations and loyalty levels, are implemented. Targeting a code line coverage of at least 60% for the Clients application.\
+[👉 Click here to see client tests - extensive.](./client/src/test)\
+[👉 Click here to see warehouse tests.](./warehouse/src/test)\
 [👉 Click here to see bakery tests.](./bakery/src/test)
 
 ## Configuration and Logging
@@ -66,12 +66,12 @@ Configurations include infrastructure connections, databases, queues, IAM, and I
 
 ## Infrastructure (Docker-Compose)
 
-A Docker-Compose file is provided for setting up the development environment, including Postgres, RabbitMQ, IAM, and IDP services.
+A Docker-Compose file is provided for setting up the development environment, including Postgres, RabbitMQ, IAM, and IDP services.\
 
 [👉 Click here to see the docker compose-file.](./docker/docker-compose-file.yml)
 
 ## Unique loyalty system
 
-I've designed the loyalty system for maximum flexibility. You can easily tweak the points calculator and loyalty levels in both the application code and the properties file. This way, adapting to changing business needs is a breeze, giving us the agility to adjust without extensive code changes.
+I've designed the loyalty system for maximum flexibility. You can easily tweak the points calculator and loyalty levels in both the application code and the properties file. This way, adapting to changing business needs is a breeze, giving us the agility to adjust without extensive code changes.\
 
 [👉 Click here to see the client properties-file.](./client/src/main/resources/application.properties)
