@@ -49,9 +49,9 @@ A detailed list of user stories is provided in a CSV file. These stories cover v
 ## Testing
 
 Automated tests, including unit tests for price calculations and loyalty levels, are implemented. Targeting a code line coverage of at least 60% for the Clients application.\
-[👉 Click here to see client tests - extensive.](./client/src/test)\
-[👉 Click here to see warehouse tests.](./warehouse/src/test)\
-[👉 Click here to see bakery tests.](./bakery/src/test)
+[👉 Click here to see client tests - extensive.](./Client/src/test)\
+[👉 Click here to see warehouse tests.](./Warehouse/src/test)\
+[👉 Click here to see bakery tests.](./Bakery/src/test)
 
 ## Configuration and Logging
 
@@ -74,4 +74,4 @@ A Docker-Compose file is provided for setting up the development environment, in
 
 I've designed the loyalty system for maximum flexibility. You can easily tweak the points calculator and loyalty levels in both the application code and the properties file. This way, adapting to changing business needs is a breeze, giving us the agility to adjust without extensive code changes.
 
-[👉 Click here to see the client properties-file.](./client/src/main/resources/application.properties)
+[👉 Click here to see the client properties-file.](./Client/src/main/resources/application.properties)
