@@ -1,0 +1,42 @@
+### Authorization password grant
+POST http://localhost:8180/realms/client_application/protocol/openid-connect/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+client_id=bmac_application&client_secret=ZAjXEbqWWLMZceGEkCOJFf5LOjMYN8jc&username=admin&password=password&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Get loyalty limits
+GET http://localhost:8082/api/loyalty/limits
+content-type: application/json
+Authorization: Bearer {{access_token}}
+
+### Change loyalty limits
+POST http://localhost:8082/api/loyalty/limits/change
+content-type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "id": 2,
+  "name": "Gold",
+  "discountPercentage": 0.15,
+  "threshold": 10000
+}
+
+### Create loyalty limit
+POST http://localhost:8082/api/loyalty/limits/create
+content-type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Palladium",
+  "discountPercentage": 0.3,
+  "threshold": 100000
+}
+
+### Delete loyalty limit
+DELETE http://localhost:8082/api/loyalty/limits/delete?id=4
+content-type: application/json
+Authorization: Bearer {{access_token}}

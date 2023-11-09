@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+</head>
+<body>
+<h1>Ingredients</h1>
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Minimum Stock</th>
+    </tr>
+    <tr th:each="ingredient:${ingredients}">
+        <td th:text="${ingredient.getId}"></td>
+        <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.amount}"></td>
+        <td th:text="${ingredient.minimumStock}"></td>
+    </tr>
+</table>
+</body>
+</html>

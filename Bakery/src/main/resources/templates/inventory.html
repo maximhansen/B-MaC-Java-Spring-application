@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Onze producten</h1>
+    <form action="/newProduct">
+        <button class="btn btn-primary" type="submit">Nieuw product</button>
+    </form>
+    <form action="/incomingOrders">
+        <button class="btn btn-warning" type="submit">Bekijk alle orders</button>
+    </form>
+
+    <form action="/ingredients">
+        <button class="btn btn-danger" type="submit">Bekijk alle ingrediënten</button>
+    </form>
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Omschrijving</th>
+            <th>Prijs</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="!${#lists.isEmpty(products)}" th:each="product:${products}">
+            <td th:text="${product.productName}" th:class="${product.getDeactivated() ? 'text-muted' : ''}"></td>
+            <td th:text="${product.description}" th:class="${product.getDeactivated() ? 'text-muted' : ''}"></td>
+            <td th:text="${product.price == null ? 'geen prijs' : product.price}" th:class="${product.getDeactivated() ? 'text-muted' : ''}"> euro</td>
+            <td>
+                <form action="/chosenProduct">
+                    <input type="hidden" name="productName" th:value="${product.productName}">
+                    <button class="btn btn-primary" type="submit">Bekijk product</button>
+                </form>
+            </td>
+            <td th:if="${!product.getDeactivated()}">
+                <form action="/deactivateProduct" method="post">
+                    <input type="hidden" name="productName" th:value="${product.productName}">
+                    <button class="btn btn-danger" type="submit">Deactivate</button>
+                </form>
+            </td>
+            <td th:if="${product.getDeactivated()}">
+                <form action="/deactivateProduct" method="post">
+                    <input type="hidden" name="productName" th:value="${product.productName}">
+                    <button class="btn btn-danger" type="submit">Activate</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+

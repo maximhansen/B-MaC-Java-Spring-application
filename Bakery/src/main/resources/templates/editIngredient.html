@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Ingredient</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Edit Ingredient</h1>
+    <form method="post" action="/updateIngredient">
+        <input type="hidden" id="ingredientNumber" name="ingredientNumber" th:value="${ingredient.getId()}">
+        <input type="hidden" id="productNumber" name="productNumber" th:value="${ingredient.getProduct()}">
+        <div class="form-group">
+            <label for="ingredientName">Ingredient Name:</label>
+            <input type="text" class="form-control" id="ingredientName" name="ingredientName" th:value="${ingredient.getName()}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="newAmount">Ingredient Amount:</label>
+            <input type="number" class="form-control" id="newAmount" name="newAmount" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Ingredient</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

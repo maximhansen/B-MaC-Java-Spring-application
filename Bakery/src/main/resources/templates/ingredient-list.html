@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredient List</title>
+</head>
+<body>
+<h1>Ingredients</h1>
+<ul th:if="${error}">
+    <li>Please start the warehouse to view the ingredients.</li>
+</ul>
+<ul th:unless="${error}">
+    <li th:each="ingredient : ${ingredients}">
+        <span th:text="${ingredient.getName()}"></span>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,23 @@
+### Request all ingredients
+GET http://localhost:8081/api/ingredients/all
+Content-Type: application/json
+
+### Request ingredient by name
+GET http://localhost:8081/api/ingredients?name=Butter
+Content-Type: application/json
+
+### Update stock of ingredient plus 10
+POST http://localhost:8081/api/stock?amount=10&name=Butter
+Content-Type: application/json
+
+### Update stock of ingredient min 10
+POST http://localhost:8081/api/stock?amount=-10&name=Butter
+Content-Type: application/json
+
+### Add new ingredient
+POST http://localhost:8081/api/ingredients/add
+Content-Type: application/json
+
+{
+  "name": "Apple"
+}

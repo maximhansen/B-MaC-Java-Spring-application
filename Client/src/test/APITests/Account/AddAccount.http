@@ -1,0 +1,25 @@
+### Authorization password grant
+POST http://localhost:8180/realms/client_application/protocol/openid-connect/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+client_id=bmac_application&client_secret=ZAjXEbqWWLMZceGEkCOJFf5LOjMYN8jc&username=sam&password=password&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Create new account
+POST http://localhost:8082/api/account/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "firstName": "Sam",
+  "lastName": "Verdonck",
+  "phoneNumber": "0473389421"
+}
+
+### Delete account
+DELETE http://localhost:8082/api/account/delete
+Content-Type: application/json
+Authorization: Bearer {{access_token}}

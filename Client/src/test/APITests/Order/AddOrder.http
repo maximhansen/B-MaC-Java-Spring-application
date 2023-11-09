@@ -1,0 +1,45 @@
+### Authorization password grant
+POST http://localhost:8180/realms/client_application/protocol/openid-connect/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+client_id=bmac_application&client_secret=ZAjXEbqWWLMZceGEkCOJFf5LOjMYN8jc&username=user&password=password&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Get all products
+GET http://localhost:8082/api/product/all
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+
+### Create new order
+POST http://localhost:8082/api/orders/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "specialInstructions": "Delivery to the door",
+    "productDtoList": [
+        {
+        "productNumber": "6f8d5a2b-aa4e-4b71-a33d-182ccda1d3d0",
+        "quantity": 1
+        },
+      {
+        "productNumber": "f28e9a06-0d2c-4a3b-b12d-7a1c1f3ec1e2",
+        "quantity": 2,
+        "specialRequest": "with extra chocolate"
+      }
+    ]
+}
+
+### Get all orders
+GET http://localhost:8082/api/orders/all
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+### Create new order via existing order
+POST http://localhost:8082/api/orders/create/via-existing-order?orderId=8d74adec-acc2-42be-86d3-49266cea5894
+Content-Type: application/json
+Authorization: Bearer {{access_token}}

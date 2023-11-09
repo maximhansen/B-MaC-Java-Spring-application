@@ -1,0 +1,7 @@
+Order ID, Total Price, Order Date, Special Instruction, ClientID
+8b8691e7-0287-4f1d-bbaf-1e10be917e96, 10.0, 01-01-2023, null, 1
+d1f6a9d2-7df5-4a78-8e1d-d20e8125e8a2, 5000.0, 01-01-2023, null, 1
+90e8d6c6-3d03-46b3-b15f-6aaad2f9478a, 4000.0, 01-01-2023, null, 1
+550e8400-e29b-41d4-a716-446655440000, 5000.0, 01-01-2023, null, 1
+3ae57b5c-e7e0-4b25-8c1d-4b8d5c59c487, 0.0, 08-11-2023, Delivery to the door, 1
+c7194e87-5559-4228-9c19-14c22849a8fe, 19450.0, 08-11-2023, Delivery to the door, 1

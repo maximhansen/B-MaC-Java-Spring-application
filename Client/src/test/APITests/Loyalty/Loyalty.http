@@ -1,0 +1,17 @@
+### Authorization password grant
+POST http://localhost:8180/realms/client_application/protocol/openid-connect/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+client_id=bmac_application&client_secret=ZAjXEbqWWLMZceGEkCOJFf5LOjMYN8jc&username=user&password=password&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Get loyalty type
+GET http://localhost:8082/api/loyalty
+Authorization: Bearer {{access_token}}
+
+### Get loyalty points
+GET http://localhost:8082/api/loyalty/points
+Authorization: Bearer {{access_token}}

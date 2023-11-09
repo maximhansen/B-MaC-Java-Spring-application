@@ -1,0 +1,33 @@
+## Haal alle producten op met REST API
+GET http://localhost:8080/api/AllProducts
+
+### Plaats een nieuw product met REST API
+POST http://localhost:8080/api/postProduct
+Content-Type: application/json
+
+{
+  "productNumber": "0e37d7ae-3931-4ae8-a69f-03d5269097de",
+  "productName": "TestProduct",
+  "description": "TestDescription"
+}
+
+### Haal alle ingredienten op van warehouse met REST API
+GET http://localhost:8081/api/ingredients/all
+
+
+### Haal alle orders op van client met REST API
+GET http://localhost:8082/api/orders/all/confirmed
+
+
+### verwijder ingredient
+DELETE http://localhost:8080/api/deleteIngredient/362a4468-9e37-42a0-b8f4-deb272e322d7
+
+
+### Alle producten zonder prijs
+GET http://localhost:8080/api/unPricedProducts
+
+### product prijs zetten
+POST http://localhost:8080/api/product/setPrice/4.00/d18614a6-ce8d-4881-b07f-9b7c087fe176
+
+
+

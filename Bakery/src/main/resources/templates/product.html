@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title" th:text="${product.productName}"></h1>
+            <p class="card-text" th:text="${product.description}"></p>
+            <h2>Ingrediënten</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="ingredient : ${product.getIngredients()}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span th:text="${ingredient.getName()}"></span>
+                        <span class="badge bg-dark text-light" th:text="${ingredient.getAmount()}"></span>
+                        <div>
+                            <form action="/editIngredient" method="get">
+                                <input type="hidden" name="ingredientNumber" th:value="${ingredient.getId()}">
+                                <button th:if="${product.recipe?.finalised == false}" class="btn btn-dark text-light btn-sm" type="submit">Edit</button>
+                            </form>
+                            <form action="/deleteIngredient" method="post">
+                                <input type="hidden" name="ingredientNumber" th:value="${ingredient.getId()}">
+                                <input type="hidden" name="productNumber" th:value="${product.getProductNumber()}">
+                                <button th:if="${product.recipe?.finalised == false}" class="btn btn-dark text-light btn-sm" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div th:if="${error}">
+                <p>Please put the warehouse online to view the ingredients.</p>
+
+            </div>
+            <div th:unless="${error}">
+                <form action="/addSingleIngredient" method="post" th:if="${product.recipe?.finalised == false}">
+                    <input type="hidden" name="productNumber" th:value="${product.getProductNumber()}">
+                    <div class="form-group">
+                        <select class="form-control" name="ingredientName">
+                            <option value="" disabled="disabled" selected="selected">Select an Ingredient</option>
+                            <option th:each="ingredient : ${ingredients}" th:value="${ingredient.name}" th:text="${ingredient.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredientAmount">Amount: </label>
+                        <input type="number" class="form-control" name="ingredientAmount" id="ingredientAmount">
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Add Ingredient</button>
+                </form>
+            </div>
+            <h2>Stappen</h2>
+            <ul class="list-group" th:if="${product.recipe != null}">
+                <li th:each="step, stepIndex : ${product.recipe?.steps}" class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span th:text="${step}"></span>
+                        <form action="/removeStep" method="post" class="d-inline">
+                            <input type="hidden" name="recipeNumber" th:value="${product.recipe.recipeNumber}">
+                            <input type="hidden" name="stepIndex" th:value="${stepIndex.index}">
+                            <input type="hidden" name="productName" th:value="${product.productName}">
+                            <button th:if="${product.recipe?.finalised == false}" type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+            <form action="/addStep" method="post" th:if="${product.recipe != null}">
+                <input type="hidden" name="recipeNumber" th:value="${product.recipe.recipeNumber}">
+                <input type="hidden" name="productName" th:value="${product.productName}">
+                <div th:if="${product.recipe?.finalised == false}" class="input-group mb-3">
+                    <input type="text" name="step" class="form-control" placeholder="Add a step">
+                    <button type="submit" class="btn btn-success">Add Step</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:if="${product.recipe == null}">
+        <form method="post" action="api/add-recipe">
+            <input type="hidden" name="productName" th:value="${product.productName}" />
+            <div th:if="${product.recipe == null or product.recipe.steps == null}" class="form-group">
+                <label>Recipe Steps:</label>
+                <div id="recipe-steps-container">
+                </div>
+                <button th:if="${product.recipe?.finalised == false}" type="button" id="add-step-button" class="btn btn-primary">Add Recipe Step</button>
+            </div>
+            <button type="submit" class="btn btn-primary" th:if="${product.recipe == null and product.recipe?.finalised == false}">Add Recipe</button>
+        </form>
+    </div>
+    <div>
+        <form action="/finaliseRecipe" method="post">
+            <input type="hidden" name="productNumber" th:value="${product.productNumber}" />
+            <input type="hidden" name="recipeNumber" th:value="${product.recipe?.recipeNumber}" />
+            <button type="submit" class="btn btn-primary" th:if="${product.recipe != null and product.recipe?.finalised == false}">Finalise Recipe</button>
+        </form>
+    </div>
+    <script>
+        var stepCount = 0;
+        document.getElementById("add-step-button").addEventListener("click", function() {
+            var newStepTextarea = document.createElement("textarea");
+            newStepTextarea.className = "form-control";
+            newStepTextarea.name = "steps[" + stepCount + "]";
+            newStepTextarea.rows = 4;
+            document.getElementById("recipe-steps-container").appendChild(newStepTextarea);
+            stepCount++;
+        });
+    </script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

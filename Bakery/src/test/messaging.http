@@ -1,0 +1,4 @@
+POST http://localhost:8080/hello/milan
+
+### Product
+POST http://localhost:8080/api/changeActivation/d772855b-7cd6-4313-b5c1-b3b52ab5f4a2
